@@ -1,9 +1,0 @@
-### Example user template template
-### Example user template
-
-# IntelliJ project files
-.gitignore
-.idea
-*.iml
-out
-gen
