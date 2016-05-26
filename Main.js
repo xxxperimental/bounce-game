@@ -2,9 +2,6 @@ var gameBoard = document.getElementById("gameboard");
 var ctx = gameBoard.getContext("2d");
 
 
-
-
-
 var currHeight = gameBoard.height = window.innerHeight / 1.5,
     currWidth = gameBoard.width = document.body.clientWidth;
 
@@ -37,7 +34,7 @@ function update() {
         ball.goLeft();
     }
     if (keys[32]) {
-        if (ball.y > currHeight - ball.radius - 1) {
+        if (ball.y == 440 || ball.y > currHeight - ball.radius - 1) {
             ball.jump();
             bounceCount = 0;
         }
@@ -81,21 +78,27 @@ function update() {
             ball.x = obstacle.x - ball.radius;
         }
         else if (ball.x + ball.radius > obstacle.x + 5 &&
-            ball.x - ball.radius < obstacle.x + 100 - 5 &&
+            ball.x < obstacle.x + obstacle.width - 5 &&
             ball.y + ball.radius > obstacle.y) {
             ball.y = obstacle.y - ball.radius;
+
+            ball.velocityY = 0;
         }
-        else if (ball.x - ball.radius < obstacle.x + 100 &&
-            ball.x - ball.radius > obstacle.x + 100 - 5 &&
+        else if (ball.x < obstacle.x + obstacle.width &&
+            ball.x > obstacle.x + obstacle.width - 5 &&
             ball.y + ball.radius > obstacle.y) {
-            ball.x = obstacle.x + 100 + ball.radius;
+            ball.x = obstacle.x + obstacle.width;
         }
     }
+
+
     ctx.font = '30px sans-serif';
     ctx.fillStyle = 'black';
-    ctx.strokeText("Level " + obstacleCount, 50, 50);
+    ctx.strokeText("Level " + obstacleCount, 15, 30);
+    ctx.font = "15px sans-serif";
+    ctx.fillText("Ball x: " + ball.x, this.currWidth - 200, 15);
+    ctx.fillText("Ball y: " + ball.y, this.currWidth - 200, 35);
 }
-
 
 
 document.body.addEventListener("keydown", function (e) {

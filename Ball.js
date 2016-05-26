@@ -47,7 +47,7 @@ class Ball {
         ball.avatarSrc = "freebsd.png";
     }
     jump() {
-        ball.velocityY = 40 ;
+        ball.velocityY = 40;
         this.restoreBounce();
     }
 }
